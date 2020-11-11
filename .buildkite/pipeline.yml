@@ -12,28 +12,68 @@ steps:
 
   - wait
 
-  - label: ':ios: iOS 14 end-to-end tests'
-    timeout_in_minutes: 60
-    agents:
-      queue: opensource
-    plugins:
-      artifacts#v1.3.0:
-        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
-      docker-compose#v3.3.0:
-        run: cocoa-maze-runner
-        command:
-          - "--app=/app/build/iOSTestApp.ipa"
-          - "--farm=bs"
-          - "--device=IOS_14"
-          - "--username=$BROWSER_STACK_USERNAME"
-          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
-          - "--resilient"
-          - "--appium-version=1.15.0"
-    concurrency: 10
-    concurrency_group: browserstack-app
+#  - label: ':ios: iOS 14 end-to-end tests'
+#    timeout_in_minutes: 60
+#    agents:
+#      queue: opensource
+#    plugins:
+#      artifacts#v1.3.0:
+#        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
+#      docker-compose#v3.3.0:
+#        run: cocoa-maze-runner
+#        command:
+#          - "--app=/app/build/iOSTestApp.ipa"
+#          - "--farm=bs"
+#          - "--device=IOS_14"
+#          - "--username=$BROWSER_STACK_USERNAME"
+#          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
+#          - "--resilient"
+#          - "--appium-version=1.15.0"
+#    concurrency: 10
+#    concurrency_group: browserstack-app
+#
+#  - label: ':ios: iOS 13 end-to-end tests'
+#    timeout_in_minutes: 60
+#    agents:
+#      queue: opensource
+#    plugins:
+#      artifacts#v1.3.0:
+#        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
+#      docker-compose#v3.3.0:
+#        run: cocoa-maze-runner
+#        command:
+#          - "--app=/app/build/iOSTestApp.ipa"
+#          - "--farm=bs"
+#          - "--device=IOS_13"
+#          - "--username=$BROWSER_STACK_USERNAME"
+#          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
+#          - "--resilient"
+#          - "--appium-version=1.15.0"
+#    concurrency: 10
+#    concurrency_group: browserstack-app
+#
+#  - label: ':ios: iOS 12 end-to-end tests'
+#    timeout_in_minutes: 60
+#    agents:
+#      queue: opensource
+#    plugins:
+#      artifacts#v1.3.0:
+#        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
+#      docker-compose#v3.3.0:
+#        run: cocoa-maze-runner
+#        command:
+#          - "--app=/app/build/iOSTestApp.ipa"
+#          - "--farm=bs"
+#          - "--device=IOS_12"
+#          - "--username=$BROWSER_STACK_USERNAME"
+#          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
+#          - "--resilient"
+#          - "--appium-version=1.15.0"
+#    concurrency: 10
+#    concurrency_group: browserstack-app
 
-  - label: ':ios: iOS 13 end-to-end tests'
-    timeout_in_minutes: 60
+  - label: ':ios: iOS 11 end-to-end tests'
+    timeout_in_minutes: 90
     agents:
       queue: opensource
     plugins:
@@ -44,27 +84,7 @@ steps:
         command:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
-          - "--device=IOS_13"
-          - "--username=$BROWSER_STACK_USERNAME"
-          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
-          - "--resilient"
-          - "--appium-version=1.15.0"
-    concurrency: 10
-    concurrency_group: browserstack-app
-
-  - label: ':ios: iOS 12 end-to-end tests'
-    timeout_in_minutes: 60
-    agents:
-      queue: opensource
-    plugins:
-      artifacts#v1.3.0:
-        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
-      docker-compose#v3.3.0:
-        run: cocoa-maze-runner
-        command:
-          - "--app=/app/build/iOSTestApp.ipa"
-          - "--farm=bs"
-          - "--device=IOS_12"
+          - "--device=IOS_11_0_IPHONE_8_PLUS"
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
@@ -73,7 +93,7 @@ steps:
     concurrency_group: browserstack-app
 
   - label: ':ios: iOS 11 end-to-end tests'
-    timeout_in_minutes: 60
+    timeout_in_minutes: 90
     agents:
       queue: opensource
     plugins:
@@ -84,7 +104,7 @@ steps:
         command:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
-          - "--device=IOS_11"
+          - "--device=IOS_11_0_IPHONE_X"
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
@@ -92,8 +112,8 @@ steps:
     concurrency: 10
     concurrency_group: browserstack-app
 
-  - label: ':ios: iOS 10 end-to-end tests'
-    timeout_in_minutes: 60
+  - label: ':ios: iOS 11 end-to-end tests'
+    timeout_in_minutes: 90
     agents:
       queue: opensource
     plugins:
@@ -104,10 +124,90 @@ steps:
         command:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
-          - "--device=IOS_10"
+          - "--device=IOS_11_0_IPHONE_SE"
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
           - "--appium-version=1.15.0"
     concurrency: 10
     concurrency_group: browserstack-app
+
+  - label: ':ios: iOS 11 end-to-end tests'
+    timeout_in_minutes: 90
+    agents:
+      queue: opensource
+    plugins:
+      artifacts#v1.3.0:
+        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
+      docker-compose#v3.3.0:
+        run: cocoa-maze-runner
+        command:
+          - "--app=/app/build/iOSTestApp.ipa"
+          - "--farm=bs"
+          - "--device=IOS_11_0_IPHONE_6"
+          - "--username=$BROWSER_STACK_USERNAME"
+          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
+          - "--resilient"
+          - "--appium-version=1.15.0"
+    concurrency: 10
+    concurrency_group: browserstack-app
+
+  - label: ':ios: iOS 11 end-to-end tests'
+    timeout_in_minutes: 90
+    agents:
+      queue: opensource
+    plugins:
+      artifacts#v1.3.0:
+        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
+      docker-compose#v3.3.0:
+        run: cocoa-maze-runner
+        command:
+          - "--app=/app/build/iOSTestApp.ipa"
+          - "--farm=bs"
+          - "--device=IOS_11_0_IPHONE_6S"
+          - "--username=$BROWSER_STACK_USERNAME"
+          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
+          - "--resilient"
+          - "--appium-version=1.15.0"
+    concurrency: 10
+    concurrency_group: browserstack-app
+
+  - label: ':ios: iOS 11 end-to-end tests'
+    timeout_in_minutes: 90
+    agents:
+      queue: opensource
+    plugins:
+      artifacts#v1.3.0:
+        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
+      docker-compose#v3.3.0:
+        run: cocoa-maze-runner
+        command:
+          - "--app=/app/build/iOSTestApp.ipa"
+          - "--farm=bs"
+          - "--device=IOS_11_0_IPHONE_6S_PLUS"
+          - "--username=$BROWSER_STACK_USERNAME"
+          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
+          - "--resilient"
+          - "--appium-version=1.15.0"
+    concurrency: 10
+    concurrency_group: browserstack-app
+
+#  - label: ':ios: iOS 10 end-to-end tests'
+#    timeout_in_minutes: 60
+#    agents:
+#      queue: opensource
+#    plugins:
+#      artifacts#v1.3.0:
+#        download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
+#      docker-compose#v3.3.0:
+#        run: cocoa-maze-runner
+#        command:
+#          - "--app=/app/build/iOSTestApp.ipa"
+#          - "--farm=bs"
+#          - "--device=IOS_10"
+#          - "--username=$BROWSER_STACK_USERNAME"
+#          - "--access-key=$BROWSER_STACK_ACCESS_KEY"
+#          - "--resilient"
+#          - "--appium-version=1.15.0"
+#    concurrency: 10
+#    concurrency_group: browserstack-app
