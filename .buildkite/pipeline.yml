@@ -88,7 +88,7 @@ steps:
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
-          - "--appium-version=1.15.0"
+          - "--appium-version=1.16.0"
     concurrency: 10
     concurrency_group: browserstack-app
 
@@ -108,7 +108,7 @@ steps:
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
-          - "--appium-version=1.15.0"
+          - "--appium-version=1.16.0"
     concurrency: 10
     concurrency_group: browserstack-app
 
@@ -128,7 +128,7 @@ steps:
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
-          - "--appium-version=1.15.0"
+          - "--appium-version=1.16.0"
     concurrency: 10
     concurrency_group: browserstack-app
 
@@ -148,7 +148,7 @@ steps:
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
-          - "--appium-version=1.15.0"
+          - "--appium-version=1.16.0"
     concurrency: 10
     concurrency_group: browserstack-app
 
@@ -168,7 +168,7 @@ steps:
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
-          - "--appium-version=1.15.0"
+          - "--appium-version=1.16.0"
     concurrency: 10
     concurrency_group: browserstack-app
 
@@ -188,7 +188,7 @@ steps:
           - "--username=$BROWSER_STACK_USERNAME"
           - "--access-key=$BROWSER_STACK_ACCESS_KEY"
           - "--resilient"
-          - "--appium-version=1.15.0"
+          - "--appium-version=1.16.0"
     concurrency: 10
     concurrency_group: browserstack-app
 
