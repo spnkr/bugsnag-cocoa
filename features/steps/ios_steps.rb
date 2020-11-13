@@ -50,6 +50,7 @@ When("I send the app to the background") do
 end
 
 When("I relaunch the app") do
+  sleep(2)
   MazeRunner.driver.launch_app
 end
 
