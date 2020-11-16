@@ -10,7 +10,7 @@ Feature: Uncaught NSExceptions are captured by Bugsnag
     Then the request is valid for the error reporting API
     And the exception "message" equals "An uncaught exception! SCREAM."
     And the exception "errorClass" equals "NSGenericException"
-    And the "method" of stack frame 0 equals the platform-dependent string:
+    And the "method" of stack frame 0 equals one of:
       | ios   | <redacted>            |
       | macos | __exceptionPreprocess |
     And the "method" of stack frame 1 equals "objc_exception_throw"

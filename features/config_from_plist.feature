@@ -12,7 +12,7 @@ Feature: Loading Bugsnag configuration from Info.plist
         And the payload field "sessions" is not null
         And I discard the oldest request
         And the "Bugsnag-API-Key" header equals "0192837465afbecd0192837465afbecd"
-        And the event "metaData.nserror.domain" equals the platform-dependent string:
+        And the event "metaData.nserror.domain" equals one of:
           | ios   | iOSTestApp.LaunchError   |
           | macos | macOSTestApp.LaunchError |
         And the event "app.releaseStage" equals "beta2"
@@ -24,7 +24,7 @@ Feature: Loading Bugsnag configuration from Info.plist
         And the payload field "sessions" is not null
         And I discard the oldest request
         And the "Bugsnag-API-Key" header equals "0192837465afbecd0192837465afbecd"
-        And the event "metaData.nserror.domain" equals the platform-dependent string:
+        And the event "metaData.nserror.domain" equals one of:
           | ios   | iOSTestApp.LoadConfigFromFileAutoScenarioError   |
           | macos | macOSTestApp.LoadConfigFromFileAutoScenarioError |
         And the event "app.releaseStage" equals "beta2"

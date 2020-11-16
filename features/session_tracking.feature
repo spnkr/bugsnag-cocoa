@@ -11,10 +11,10 @@ Feature: Session Tracking
     And the payload field "app.version" equals "1.0.3"
     And the payload field "app.bundleVersion" equals "5"
     And the payload field "app.releaseStage" equals "development"
-    And the payload field "app.type" equals the platform-dependent string:
+    And the payload field "app.type" equals one of:
       | ios   | iOS   |
       | macos | macOS |
-    And the payload field "device.osName" equals the platform-dependent string:
+    And the payload field "device.osName" equals one of:
       | ios   | iOS    |
       | macos | Mac OS |
     And the payload field "device.model" matches the test device model
@@ -33,10 +33,10 @@ Feature: Session Tracking
     And the payload field "app.version" equals "2.0.14"
     And the payload field "app.bundleVersion" equals "5"
     And the payload field "app.releaseStage" equals "development"
-    And the payload field "app.type" equals the platform-dependent string:
+    And the payload field "app.type" equals one of:
       | ios   | iOS   |
       | macos | macOS |
-    And the payload field "device.osName" equals the platform-dependent string:
+    And the payload field "device.osName" equals one of:
       | ios   | iOS    |
       | macos | Mac OS |
     And the payload field "device.model" matches the test device model

@@ -203,6 +203,11 @@ Then("the stacktrace contains methods:") do |table|
   assert_true(contains, "Stacktrace methods #{actual} did not contain #{expected}")
 end
 
+Then("the payload field {string} equals one of:") do |field, possible_values|
+  value = read_key_path(Server.current_request[:body], field)
+  assert_includes(possible_values.raw.flatten, value)
+end
+
 Then("the payload field {string} matches the test device model") do |field|
   internal_names = {
       "iPhone 7" => %w[iPhone9,1 iPhone9,2 iPhone9,3 iPhone9,4],
@@ -266,7 +271,7 @@ Then("the request is valid for the error reporting API") do
     }
   when 'Mac'
     steps %Q{
-      Then the request is valid for the error reporting API version "4.0" for the "OSX Bugsnag Notifier" notifier
+      Then the request is valid for the error reporting API version "4.0" for the "iOS Bugsnag Notifier" notifier
     }
   else
     raise "Unknown platformName"
@@ -281,7 +286,7 @@ Then("the request is valid for the session reporting API") do
     }
   when 'Mac'
     steps %Q{
-      Then the request is valid for the session reporting API version "1.0" for the "OSX Bugsnag Notifier" notifier
+      Then the request is valid for the session reporting API version "1.0" for the "iOS Bugsnag Notifier" notifier
     }
   else
     raise "Unknown platformName"

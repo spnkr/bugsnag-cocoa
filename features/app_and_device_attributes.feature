@@ -11,7 +11,7 @@ Feature: App and Device attributes present
 
     # Device
 
-    And the payload field "events.0.device.osName" equals the platform-dependent string:
+    And the payload field "events.0.device.osName" equals one of:
       | ios   | iOS    |
       | macos | Mac OS |
     And the payload field "events.0.device.jailbroken" is false
@@ -38,11 +38,11 @@ Feature: App and Device attributes present
     # (codeBundleId is RN only, so omitted)
     And the payload field "events.0.app.bundleVersion" is not null
     #And the payload field "events.0.app.dsymUUIDs" is a non-empty array # Fails, == nil
-    And the payload field "events.0.app.id" equals the platform-dependent string:
+    And the payload field "events.0.app.id" equals one of:
       | ios   | com.bugsnag.iOSTestApp   |
       | macos | com.bugsnag.macOSTestApp |
     And the payload field "events.0.app.releaseStage" equals "development"
-    And the payload field "events.0.app.type" equals the platform-dependent string:
+    And the payload field "events.0.app.type" equals one of:
       | ios   | iOS   |
       | macos | macOS |
     And the payload field "events.0.app.version" equals "1.0.3"
