@@ -339,6 +339,30 @@ NSDictionary *BSGParseCustomException(NSDictionary *report,
     NSDictionary *error = [event valueForKeyPath:@"crash.error"];
     NSString *errorType = error[BSGKeyType];
 
+    // Data coming from KSCrash will have either user.handledCount = 0 and user.unhandledCount > 0, or the opposite
+    BOOL wasUnhandled = [event valueForKeyPath:@"user.unhandledCount"] == nil ||
+            [[event valueForKeyPath:@"user.unhandledCount"] intValue] > 0;
+    BOOL wasUnhandledChanged = [event valueForKeyPath:@"user.unhandled"] != nil &&
+            [[event valueForKeyPath:@"user.unhandled"] boolValue] != wasUnhandled;
+    BOOL isUnhandled = wasUnhandled;
+
+    if (wasUnhandledChanged) {
+        isUnhandled = !wasUnhandled;
+        NSMutableDictionary *user = [event[BSGKeyUser] mutableCopy];
+        user[@"unhandled"] = @(isUnhandled);
+        user[@"unhandledOverridden"] = @YES;
+        if (wasUnhandled) {
+            user[@"unhandledCount"] = @0;
+            user[@"handledCount"] = @1;
+        } else {
+            user[@"unhandledCount"] = @1;
+            user[@"handledCount"] = @0;
+        }
+        NSMutableDictionary *eventCopy = [event mutableCopy];
+        eventCopy[BSGKeyUser] = user;
+        event = eventCopy;
+    }
+
     id userMetadata = [event valueForKeyPath:@"user.metaData"];
     BugsnagMetadata *metadata;
 
@@ -386,13 +410,15 @@ NSDictionary *BSGParseCustomException(NSDictionary *report,
     BugsnagHandledState *handledState;
     if (recordedState) {
         handledState = [[BugsnagHandledState alloc] initWithDictionary:recordedState];
-    } else { // the event was unhandled.
+    } else { // the event was (probably) unhandled.
         BOOL isSignal = [BSGKeySignal isEqualToString:errorType];
         SeverityReasonType severityReason = isSignal ? Signal : UnhandledException;
         handledState = [BugsnagHandledState
                 handledStateWithSeverityReason:severityReason
                                       severity:BSGSeverityError
                                      attrValue:errors[0].errorClass];
+        handledState.unhandled = isUnhandled;
+        handledState.unhandledOverridden = wasUnhandledChanged;
     }
 
     NSMutableDictionary *userAtCrash = [self parseOnCrashData:event];
@@ -695,7 +721,9 @@ NSDictionary *BSGParseCustomException(NSDictionary *report,
 
 
     BSGDictSetSafeObject(event, @(self.handledState.unhandled), BSGKeyUnhandled);
-    BSGDictSetSafeObject(event, @(self.handledState.unhandledOverridden), BSGKeyUnhandledOverridden);
+    if (self.handledState.unhandledOverridden) {
+        BSGDictSetSafeObject(event, @(self.handledState.unhandledOverridden), BSGKeyUnhandledOverridden);
+    }
 
     // serialize handled/unhandled into payload
     NSMutableDictionary *severityReason = [NSMutableDictionary new];

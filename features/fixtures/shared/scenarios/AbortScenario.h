@@ -33,3 +33,7 @@
 @interface AbortScenario: Scenario
 
 @end
+
+@interface AbortScenarioOverride: Scenario
+
+@end

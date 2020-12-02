@@ -38,3 +38,17 @@
 }
 
 @end
+
+@implementation AbortScenarioOverride
+
+- (void)startBugsnag {
+    self.config.autoTrackSessions = NO;
+    self.config.onCrashHandler = markErrorHandledCallback;
+    [super startBugsnag];
+}
+
+- (void)run {
+    abort();
+}
+
+@end
